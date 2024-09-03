@@ -4,8 +4,7 @@
  */
 
 const { Router } = require('express');
-const Controller = require('./controller');
-
+const Controller = require('./Controller');
 /**
  * inicializar a função do Router
  * Start router function
