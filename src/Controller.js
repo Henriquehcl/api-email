@@ -97,6 +97,11 @@ class Controller {
         }
 
     }
+
+    async checkAPI(req, res){
+
+        return res.status(200).json({ data: 'ok'});  
+    }
 }
 
 /**
