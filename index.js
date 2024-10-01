@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 const router = require('./src/Router');
+const cors = require('cors');
 
 /**
  * Inicializar serviço de forma assincrona
@@ -23,6 +24,17 @@ const router = require('./src/Router');
          */
         app.use(express.json());
         
+        const corsOptions = {
+            origin: '*', 
+            methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', 
+            headers: 'Content-Type,Authorization,x-access-token', 
+            credentials: true,
+            exposedHeaders: 'custom-header-1, custom-header-2',
+            preflightContinue: false
+          };
+          
+        app.use(cors(corsOptions));
+
         /**
          * inicializar a rota
          */
