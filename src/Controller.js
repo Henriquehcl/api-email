@@ -13,6 +13,14 @@ class Controller {
      */
     async sendEmail(req, res) {
         try {
+
+            
+            /**
+             * ontém a url usada para envio do email
+             * @var {String} url
+             */
+            const url = req.url;
+
             /**
              * recebe os parâmetros da requisição
              */
@@ -49,20 +57,53 @@ class Controller {
             });
 
             /**
-             * configuração de formato de envio do email
+             * objeto que vai receber a configuração de email
              */
-            const mailOptions = {
-                from: email,
-                to: `${process.env.EMAIL}, ${process.env.EMAIL2}`, // Adicione os e-mails separados por vírgula
-                subject: 'Nova Mensagem do Site',
-                text: `
-                  Nome: ${name}
-                  Email: ${email}
-                  Telefone: ${phone}
-                  Mensagem:
-                   ${message}
-                `
-              };
+            let mailOptions = {};
+            if(url == '/familiaabraci'){
+
+                /**
+                 * configuração de formato de envio do email
+                 */
+                mailOptions = {
+                    from: email,
+                    to: `${process.env.EMAIL}`, // Adicione os e-mails separados por vírgula
+                    subject: 'Nova Mensagem do Site',
+                    text: `
+                    Nome: ${name}
+                    Email: ${email}
+                    Telefone: ${phone}
+                    Mensagem:
+                    ${message}
+                    `
+                };
+            } else if(url == '/prudenciocapital'){
+                /**
+                 * configuração de formato de envio do email
+                 */
+                mailOptions = {
+                    from: email,
+                    to: `${process.env.EMAIL2}`, // Adicione os e-mails separados por vírgula
+                    subject: 'Nova Mensagem do Site',
+                    text: `
+                    Nome: ${name}
+                    Email: ${email}
+                    Telefone: ${phone}
+                    Mensagem:
+                    ${message}
+                    `
+                };
+
+            } else{
+                /**
+                 * retorna uma mensagem de erro
+                 * returns error message
+                 */
+                return res.status(404).json({ message: 'Erro ao envia email, destinatário não localizado!' });
+            }
+
+
+            
             /**
              * envia o email
              * send email

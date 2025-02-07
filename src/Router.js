@@ -16,7 +16,8 @@ const routes = Router();
  * enviar o email
  * Send email
  */
-routes.post('/envia-email', Controller.sendEmail);
+routes.post('/familiaabraci', Controller.sendEmail);
+routes.post('/prudenciocapital', Controller.sendEmail);
 routes.get('/check', Controller.checkAPI)
 
 
