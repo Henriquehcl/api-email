@@ -53,7 +53,7 @@ class Controller {
              */
             const mailOptions = {
                 from: email,
-                to: process.env.EMAIL,
+                to: `${process.env.EMAIL}, ${process.env.EMAIL2}`, // Adicione os e-mails separados por vírgula
                 subject: 'Nova Mensagem do Site',
                 text: `
                   Nome: ${name}
